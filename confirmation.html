@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Booking Success</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    .message {
+      font-size: 24px;
+      font-weight: bold;
+      color: green;
+      background-color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .details {
+      font-size: 18px;
+      color: black;
+      text-align: center;
+      margin-top: 80px; /* Position below the success message */
+    }
+    .thankyou {
+      font-size: 22px;
+      text-align: center;
+      color: #4CAF50;
+      margin-top: 20px;
+    }
+    .smiley {
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message" id="successMessage">
+    Your tickets booked successfully!
+  </div>
+
+  <div class="details" id="ticketDetails">
+    Your tickets will be sent to your mobile number and will be mailed to your email.
+  </div>
+
+  <div class="thankyou" id="thankYouMessage">
+    Thank you! <span class="smiley">😊</span>
+  </div>
+
+  <script>
+    // Function to show the success message
+    function showMessage() {
+      const messageElement = document.getElementById('successMessage');
+      messageElement.style.visibility = 'visible'; // Show success message
+    }
+
+    // Call the function to show the success message when the page loads
+    window.onload = function() {
+      showMessage();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <style>
+        body {
+            background-color: #e0cfff; /* Light bluish-purple background */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 60%; /* Reduced container width */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .marquee {
+            display: block;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: red;
+            padding: 10px;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .marquee span {
+            display: inline-block;
+            animation: marqueeAnimation 10s linear infinite;
+        }
+
+        @keyframes marqueeAnimation {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            width: 100%;
+        }
+        .details-box {
+            border: 2px solid #ccc; /* Light border for the box */
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff; /* White background for the box */
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+        .select-seats-btn {
+            background-color: green;
+            color: white;
+            padding: 15px 30px; /* Add more padding for better appearance */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="marquee"><span>Choose Movie Details</span></h2>
+
+    <div class="details-box">
+        <label for="timings">Select Movie Timing:</label>
+        <select id="timings">
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:30 AM">11:30 AM</option>
+            <option value="1:10 PM">1:10 PM</option>
+            <option value="3:40 AM">3:40 PM</option>
+            <option value="6:00 PM">6:00 PM</option>
+            <option value="9:15 PM">9:15 PM</option>
+        </select>
+
+        <label for="theater">Select Theater:</label>
+        <select id="theater">
+            <option value="Theatre 1">G3(Raj YuvaRaj)</option>
+            <option value="Theatre 2">Sandhya</option>
+            <option value="Theatre 3">Prasad's IMAX</option>
+            <option value="Theatre 4">BDM</option>
+            <option value="Theatre 5">Sudharshan</option>
+            <option value="Theatre 6">Gold Screens</option>
+        </select>
+
+        <label for="num-tickets">Select Number of Tickets:</label>
+        <select id="num-tickets">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+
+    <div class="button-container">
+        <a href="seats.html"><button class="select-seats-btn">Select Seats</button></a>
+    </div>
+</div>
+
+</body>
+</html>

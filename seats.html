@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Seats</title>
+    <style>
+        body {
+            background-color: #e0cfff;
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+        }
+        .container {
+            width: 70%; /* Reduced width */
+            margin: 0 auto;
+            padding: 15px; /* Reduced padding */
+            margin-top: 50px; /* Adjusted margin-top */
+        }
+        .category-box {
+            width: 90%; /* Reduced width */
+            border: 2px solid #333;
+            padding: 8px; /* Reduced padding */
+            background-color: #fff;
+            transition: filter 0.3s ease;
+        }
+        h2 {
+            background-color: red;
+            color: white;
+            padding: 8px; /* Reduced padding */
+            font-size: 22px; /* Reduced font size */
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .seat-map {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .category-box {
+            width: 100%;
+            border: 2px solid #333;
+            padding: 10px;
+            background-color: #fff;
+            transition: filter 0.3s ease;
+        }
+        .category-box.blurred {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+        .category-label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        .seat-row {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .seat {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            background-color: white;
+            border: 2px solid green;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 8px; /* Added this to create the curved square effect */
+        }
+
+        .seat:hover {
+            background-color: lightgray;
+        }
+        .selected {
+            background-color: green;
+        }
+        .blurred {
+            background-color: lightgray;
+            cursor: not-allowed;
+        }
+        .price-label {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            display: block;
+            width: 60%;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            margin-left: 20%;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+            background-color: #fff;
+        }
+        .blue-line {
+            border-top: 2px solid blue;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .price-breakdown {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .price-breakdown div {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Choose Your Seats</h2>
+
+    <!-- Seat Type Dropdown -->
+    <div class="dropdown">
+        <label for="seatType">Select Seat Type: </label>
+        <select id="seatType" name="seatType" onchange="highlightSeatType()">
+            <option value="select">Select Seat Type</option>
+            <option value="recliner">Recliner Seats - Rs. 450</option>
+            <option value="diamond">Diamond Seats - Rs. 300</option>
+            <option value="gold">Gold Seats - Rs. 200</option>
+        </select>
+    </div>
+
+    <!-- Recliner Seats -->
+    <div class="category-box" id="reclinerBox">
+        <div class="category-label">Recliner Seats</div>
+        <div class="seat-row">
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R1</div>
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R2</div>
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R3</div>
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R4</div>
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R5</div>
+        </div>
+        <div class="seat-row">
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R6</div>
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R7</div>
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R8</div>
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R9</div>
+            <div class="seat" onclick="selectSeat(this, 'recliner')">R10</div>
+        </div>
+    </div>
+
+    <div class="blue-line"></div>
+
+    <!-- Diamond Seats -->
+    <div class="category-box" id="diamondBox">
+        <div class="category-label">Diamond Seats</div>
+        <div class="seat-row">
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D1</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D2</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D3</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D4</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D5</div>
+        </div>
+        <div class="seat-row">
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D6</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D7</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D8</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D9</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D10</div>
+        </div>
+        <div class="blue-line"></div>
+        <div class="seat-row">
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D11</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D12</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D13</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D14</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D15</div>
+        </div>
+        <div class="seat-row">
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D16</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D17</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D18</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D19</div>
+            <div class="seat" onclick="selectSeat(this, 'diamond')">D20</div>
+        </div>
+    </div>
+
+    <div class="blue-line"></div>
+
+    <!-- Gold Seats -->
+    <div class="category-box" id="goldBox">
+        <div class="category-label">Gold Seats</div>
+        <div class="seat-row">
+            <div class="seat" onclick="selectSeat(this, 'gold')">G1</div>
+            <div class="seat" onclick="selectSeat(this, 'gold')">G2</div>
+            <div class="seat" onclick="selectSeat(this, 'gold')">G3</div>
+            <div class="seat" onclick="selectSeat(this, 'gold')">G4</div>
+            <div class="seat" onclick="selectSeat(this, 'gold')">G5</div>
+        </div>
+        <div class="seat-row">
+            <div class="seat" onclick="selectSeat(this, 'gold')">G6</div>
+            <div class="seat" onclick="selectSeat(this, 'gold')">G7</div>
+            <div class="seat" onclick="selectSeat(this, 'gold')">G8</div>
+            <div class="seat" onclick="selectSeat(this, 'gold')">G9</div>
+            <div class="seat" onclick="selectSeat(this, 'gold')">G10</div>
+        </div>
+    </div>
+
+    <div class="price-label">
+        Total Price: Rs. <span id="totalPrice">0</span>
+    </div>
+
+    <div class="selected-seats">
+        <strong>Selected Seats: </strong><span id="selectedSeats">None</span>
+    </div>
+
+    <!-- Price Breakdown -->
+    <div class="price-breakdown">
+        <div><strong>Price Breakdown</strong></div>
+        <div>Ticket Price: Rs. <span id="ticketPrice">0</span></div>
+        <div>Taxes: Rs. <span id="taxes">0</span></div>
+        <div>Additional Charges: Rs. <span id="additionalCharges">0</span></div>
+        <div>Discount: Rs. <span id="discount">0</span></div> <!-- Added discount -->
+        <div><strong>Total: Rs. <span id="totalAmount">0</span></strong></div>
+    </div>
+
+    <button onclick="bookTickets()">Book Tickets</button>
+</div>
+
+<script>
+    let selectedSeats = [];
+    const seatPrices = {
+        'recliner': 450,
+        'diamond': 300,
+        'gold': 200
+    };
+    const taxRate = 0.18; // 18% tax rate
+    const additionalCharges = 50; // Additional charges per ticket
+
+    function highlightSeatType() {
+        const seatType = document.getElementById('seatType').value;
+
+        // Get all seat boxes
+        const reclinerBox = document.getElementById('reclinerBox');
+        const diamondBox = document.getElementById('diamondBox');
+        const goldBox = document.getElementById('goldBox');
+
+        // Remove the blurred effect from all seat types if "Select Seat Type" is chosen
+        if (seatType === 'select') {
+            reclinerBox.classList.remove('blurred');
+            diamondBox.classList.remove('blurred');
+            goldBox.classList.remove('blurred');
+        } else {
+            // Remove the blurred effect from all seat types
+            reclinerBox.classList.remove('blurred');
+            diamondBox.classList.remove('blurred');
+            goldBox.classList.remove('blurred');
+
+            // Apply the blurred effect to non-selected seat types
+            if (seatType !== 'recliner') reclinerBox.classList.add('blurred');
+            if (seatType !== 'diamond') diamondBox.classList.add('blurred');
+            if (seatType !== 'gold') goldBox.classList.add('blurred');
+        }
+    }
+
+    function selectSeat(seatElement, seatType) {
+        const seatID = seatElement.innerText;
+        const seatIndex = selectedSeats.findIndex(seat => seat.seatID === seatID && seat.type === seatType);
+
+        if (seatIndex === -1) {
+            selectedSeats.push({ seatID, type: seatType });
+            seatElement.classList.add('selected');
+        } else {
+            selectedSeats.splice(seatIndex, 1);
+            seatElement.classList.remove('selected');
+        }
+
+        updatePrice();
+    }
+
+    function updatePrice() {
+        const seatType = document.getElementById('seatType').value;
+        let totalPrice = 0;
+
+        selectedSeats.forEach(seat => {
+            if (seat.type === seatType) {
+                totalPrice += seatPrices[seat.type];
+            }
+        });
+
+        // Apply discount if 3 or more tickets are selected
+        let discount = 0;
+        if (selectedSeats.length >= 3) {
+            discount = totalPrice * 0.10; // 10% discount
+        }
+
+        const ticketPrice = totalPrice - discount;
+        const taxes = ticketPrice * taxRate;
+        const totalAmount = ticketPrice + taxes + additionalCharges;
+
+        // Update the total price and breakdown
+        document.getElementById('totalPrice').innerText = totalPrice - discount;
+        document.getElementById('selectedSeats').innerText = selectedSeats.map(seat => seat.seatID).join(', ') || 'None';
+
+        // Update breakdown
+        document.getElementById('ticketPrice').innerText = ticketPrice.toFixed(2);
+        document.getElementById('taxes').innerText = taxes.toFixed(2);
+        document.getElementById('additionalCharges').innerText = additionalCharges;
+        document.getElementById('totalAmount').innerText = totalAmount.toFixed(2);
+        document.getElementById('discount').innerText = discount.toFixed(2); // Display discount
+
+        // Show discount only if 3 or more seats are selected
+        if (selectedSeats.length >= 3) {
+            document.getElementById('totalPrice').innerText = (totalPrice - discount).toFixed(2);
+        } else {
+            document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
+        }
+    }
+
+    function bookTickets() {
+        if (selectedSeats.length === 0) {
+            alert("Please select at least one seat.");
+        } else {
+            // Redirect to the confirmation page
+            window.location.href = "confirmation.html";
+        }
+    }
+</script>
+
+</body>
+</html>
